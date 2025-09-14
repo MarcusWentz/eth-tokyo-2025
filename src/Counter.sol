@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.26;
 
-// // Unsigned
-// import { SD59x18 , convert } from "@prb/math/src/SD59x18.sol"; 
 // Signed
-import { UD60x18 , convert } from "@prb/math/src/UD60x18.sol"; 
+import { SD59x18 , convert } from "@prb/math/src/SD59x18.sol"; 
+// // Unsigned
+// import { UD60x18 , convert } from "@prb/math/src/UD60x18.sol"; 
 
 contract Counter {
 
-  function discharge() public pure returns (uint256 result) {
+  function discharge() public pure returns (int256 result) {
     // // SD59x18 x = convert(1.0 ether);
     // SD59x18 oneEther = convert(1 ether);
     // SD59x18 twoEther = convert(2 ether);
@@ -31,12 +31,12 @@ contract Counter {
     // SD59x18 expRawValue = divideByVarN.exp(); 
     
     // result = 1;
-    UD60x18 a = convert(1);
-    UD60x18 yReserve = convert(0);
-    UD60x18 lnExpression = convert(0.8 ether);
-    UD60x18 lnExpressionScaled = lnExpression.mul(a);
-    UD60x18 resultWrapped = (lnExpressionScaled) - yReserve;
-    result = UD60x18.unwrap(resultWrapped);
+    SD59x18 a = convert(-1);
+    SD59x18 yReserve = convert(0);
+    SD59x18 lnExpression = convert(-0.8 ether);
+    SD59x18 lnExpressionScaled = lnExpression.mul(a);
+    SD59x18 resultWrapped = lnExpressionScaled - yReserve;
+    result = SD59x18.unwrap(resultWrapped);
     return result;
   }
 

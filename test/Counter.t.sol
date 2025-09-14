@@ -13,7 +13,7 @@ contract CounterTest is Test {
     }
 
     function test_discharge() public view {
-        uint256 output = counter.discharge();
+        int256 output = counter.discharge();
         assertEq(output, 800000000000000000000000000000000000);
     }
 
