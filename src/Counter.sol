@@ -11,8 +11,8 @@ contract Counter {
 
   function discharge() public pure returns (int256 result) {
 
-    SD59x18 a = sd(-1);
-    SD59x18 yReserve = sd(0);
+    SD59x18 a = sd(-1 ether);
+    SD59x18 yReserve = sd(0 ether);
     // sd = scaled input
     // convert = unscaled input that will be scalled multiplying value by 1 ether
     // SD59x18 lnInput = sd(1 ether);
@@ -21,8 +21,7 @@ contract Counter {
     // SD59x18 lnExpression = convert(-0.8 ether);
     SD59x18 lnExpressionScaled = lnExpression.mul(a);
     SD59x18 resultWrapped = lnExpressionScaled - yReserve;
-    // result = SD59x18.unwrap(resultWrapped);
-    result = SD59x18.unwrap(lnExpression);
+    result = SD59x18.unwrap(resultWrapped);
     return result;
 
   }

@@ -14,7 +14,7 @@ contract CounterTest is Test {
 
     function test_discharge() public view {
         int256 output = counter.discharge();
-        assertEq(output, -811030221216662115);
+        assertEq(output, 811030221216662115);
     }
 
     // function testFuzz_SetNumber(uint256 x) public {
