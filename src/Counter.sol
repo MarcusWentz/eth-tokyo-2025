@@ -2,42 +2,29 @@
 pragma solidity 0.8.26;
 
 // Signed
-import { SD59x18 , convert } from "@prb/math/src/SD59x18.sol"; 
+// import { SD59x18, convert } from "@prb/math/src/SD59x18.sol";
+import { SD59x18, sd } from "@prb/math/src/SD59x18.sol";
 // // Unsigned
 // import { UD60x18 , convert } from "@prb/math/src/UD60x18.sol"; 
 
 contract Counter {
 
   function discharge() public pure returns (int256 result) {
-    // // SD59x18 x = convert(1.0 ether);
-    // SD59x18 oneEther = convert(1 ether);
-    // SD59x18 twoEther = convert(2 ether);
-    // SD59x18 lnOfTwo = twoEther.ln();
-    // SD59x18 zeroEther = convert(1 ether - 1 ether);
-    // SD59x18 xExp = lnOfTwo.mul(zeroEther);
-    // SD59x18 x = (xExp.exp()*oneEther);
 
-    // // SD59x18 y = convert(0.4 ether);
-    // SD59x18 positiveFactor = convert(25);
-    // SD59x18 yLnPos = positiveFactor.ln();
-    // SD59x18 yLnNeg = convert(10).ln();
-    // SD59x18 yLnDeltaRaw = yLnPos - yLnNeg;
-    // SD59x18 yLnDeltaNegative = -yLnDeltaRaw;
-    // SD59x18 y = (yLnDeltaNegative.exp()*oneEther);
-
-    // // SD59x18 subtractValue = x - y; 
-    // SD59x18 lnRawValue = (x-y).ln(); 
-    // SD59x18 divideByVarN = lnRawValue.div(convert(1)); 
-    // SD59x18 expRawValue = divideByVarN.exp(); 
-    
-    // result = 1;
-    SD59x18 a = convert(-1);
-    SD59x18 yReserve = convert(0);
-    SD59x18 lnExpression = convert(-0.8 ether);
+    SD59x18 a = sd(-1);
+    SD59x18 yReserve = sd(0);
+    // sd = scaled input
+    // convert = unscaled input that will be scalled multiplying value by 1 ether
+    // SD59x18 lnInput = sd(1 ether);
+    SD59x18 lnInput = sd(0.4444 ether);
+    SD59x18 lnExpression = lnInput.ln();
+    // SD59x18 lnExpression = convert(-0.8 ether);
     SD59x18 lnExpressionScaled = lnExpression.mul(a);
     SD59x18 resultWrapped = lnExpressionScaled - yReserve;
-    result = SD59x18.unwrap(resultWrapped);
+    // result = SD59x18.unwrap(resultWrapped);
+    result = SD59x18.unwrap(lnExpression);
     return result;
+
   }
 
   // function testEmulateFunction12ReturnInt256() public pure returns (int256 result) {
