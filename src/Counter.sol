@@ -15,10 +15,11 @@ contract Counter {
     // sd = input is already scaled by multiplying by 1 ether
     // convert = unscaled input that will be scalled multiplying value by 1 ether
     
+    SD59x18 negativeOne = sd(-1 ether);
     SD59x18 xReserve = sd(10 ether);
     SD59x18 yReserve = sd(0 ether);
     SD59x18 Dx = sd(1 ether);
-    SD59x18 a = sd(-10 ether);
+    SD59x18 a = sd(10 ether);
     SD59x18 c = sd(10 ether);
     SD59x18 b = sd(0 ether);
     SD59x18 lnInputDenominator = c - b;
@@ -28,7 +29,8 @@ contract Counter {
     SD59x18 lnExpression = lnInput.ln();
     // SD59x18 lnExpression = sd(-0.810930216216328753 ether);
     SD59x18 lnExpressionScaled = lnExpression.mul(a);
-    SD59x18 resultWrapped = lnExpressionScaled - yReserve;
+    SD59x18 lnExpressionScaledSigned = lnExpressionScaled.mul(negativeOne);
+    SD59x18 resultWrapped = lnExpressionScaledSigned - yReserve;
     result = SD59x18.unwrap(resultWrapped);
     return result;
 
