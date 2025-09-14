@@ -34,4 +34,16 @@ contract Counter {
 
   }
 
+  function charge() public pure returns (int256 result) {
+
+    // prb-math conversion methods:
+    // sd = input is already scaled by multiplying by 1 ether
+    // convert = unscaled input that will be scalled multiplying value by 1 ether
+    
+    SD59x18 resultWrapped = sd(1 ether);
+    result = SD59x18.unwrap(resultWrapped);
+    return result;
+
+  }
+
 }
