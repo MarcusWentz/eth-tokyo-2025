@@ -14,12 +14,12 @@ contract CounterTest is Test {
 
     function test_discharge() public view {
         int256 output = counter.discharge();
-        assertEq(output, 1053605156578262920);
+        assertEq(output, 2231435513142097460);
     }
 
    function test_charge() public view {
         int256 output = counter.charge();
-        assertEq(output, 1000000000000000000);
+        assertEq(output, 10517091807600000000);
     }
 
 }

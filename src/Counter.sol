@@ -17,7 +17,7 @@ contract Counter {
     
     SD59x18 xReserve = sd(10 ether);
     SD59x18 yReserve = sd(0 ether);
-    SD59x18 Dx = sd(1 ether);
+    SD59x18 Dx = sd(2 ether);
     SD59x18 a = sd(-10 ether);
     SD59x18 c = sd(10 ether);
     SD59x18 b = sd(0 ether);
@@ -40,7 +40,9 @@ contract Counter {
     // sd = input is already scaled by multiplying by 1 ether
     // convert = unscaled input that will be scalled multiplying value by 1 ether
     
-    SD59x18 resultWrapped = sd(1 ether);
+    SD59x18 factor_a = sd(10 ether);
+    SD59x18 factor_b = sd(1.05170918076 ether);
+    SD59x18 resultWrapped = factor_a.mul(factor_b);
     result = SD59x18.unwrap(resultWrapped);
     return result;
 
