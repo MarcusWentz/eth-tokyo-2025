@@ -17,7 +17,7 @@ contract Counter {
     
     SD59x18 xReserve = sd(10 ether);
     SD59x18 yReserve = sd(0 ether);
-    SD59x18 Dx = sd(2 ether);
+    SD59x18 Dx = sd(1 ether);
     SD59x18 a = sd(-10 ether);
     SD59x18 c = sd(10 ether);
     SD59x18 b = sd(0 ether);
@@ -42,10 +42,18 @@ contract Counter {
 
     SD59x18 negativeOne = sd(-1 ether);
     SD59x18 xReserve = sd(10 ether);
+    SD59x18 a = sd(10 ether);
     SD59x18 b = sd(0 ether);
+    SD59x18 Dy = sd(1 ether);
     SD59x18 factor_a = xReserve - b;
     // SD59x18 factor_a = sd(10 ether);
-    SD59x18 factor_b = sd(-1.05170918076 ether);
+    SD59x18 one = sd(1 ether);
+    SD59x18 exp_input = Dy.div(a);
+    // SD59x18 exp_input = sd(0.1 ether);
+    SD59x18 exp_expression = exp_input.exp();
+    // SD59x18 exp_expression = sd(1.10517091808 ether);
+    SD59x18 factor_b = one - exp_expression;
+    // SD59x18 factor_b = sd(-1.05170918076 ether);
     SD59x18 product = factor_a.mul(factor_b);
     SD59x18 resultWrapped = product.mul(negativeOne);
     result = SD59x18.unwrap(resultWrapped);
